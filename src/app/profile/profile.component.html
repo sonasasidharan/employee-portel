@@ -1,0 +1,40 @@
+<!-- <div class="d-flex  flex-column  bg-light justify-content-center align-items-center border shadow" style="height:450 ;">
+<button class="btn btn-link" *ngIf="!profilePicture" (click)="onStatus"> edit admin profile</button>
+<div *ngIf="profileStatus">
+    <form class="p-5">
+        <label for="ff">
+            <input type="file" id="ff" style="visibility: hidden;">
+            <img [src]="profilePicture" alt="img" width="250px">
+        </label>
+        <input type="email" class="form-control my-3" placeholder="enter admins email id" >
+        <input type="password" class="form-control mb-3" placeholder="enter password" >
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-success" type="submit">update</button>
+            <button class="btn btn-danger" type="button" (click)="onStatus()">cancel</button>
+        </div>
+    </form>
+</div>
+</div> -->
+
+
+
+<div class="d-flex flex-column justify-content-center alighn-items-center border shadow " style="height: 450px;">
+    <button class="btn btn-link" *ngIf="!profileStatus" (click)="onStatus()">admin profile</button>
+    <div *ngIf="profileStatus">
+        <form class="p-5" #adminForm="ngForm" (ngSubmit)="handleSubmit()" >
+            <label >
+                <input type="file"  id="ff" style="visibility: hidden;" (change)="getFile($event)">
+                <img [src]="profilePicture" alt="img" width="200px">
+            </label>
+            <div class="text-danger"  *ngIf="adminDetails.invalid">
+                *invalid inputs
+            </div>
+            <input type="email" class="form-control my-3" placeholder="enter admins email id"  name="em" required [(ngModel)]="adminDetails.email">
+        <input type="text" class="form-control mb-3" placeholder="enter password" name="ps" required [(ngModel)]="adminDetails.password" >
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-success" type="submit" [disabled]="adminForm.invalid">update</button>
+            <button class="btn btn-danger" type="button" (click)="onStatus()">cancel</button>
+        </div>
+        </form>
+    </div>
+</div>

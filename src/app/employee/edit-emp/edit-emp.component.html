@@ -1,0 +1,59 @@
+<div class="w-100 row">
+    <div class="col-2">
+        <div style="height: 93vh;" class="bg-dark pt-5">
+
+            <h5  class="text-center">
+                <a routerLink="/home" class="text-light text-decoration-none">Home</a>
+            </h5>
+            <h5 class="text-center mt-5">      
+              <a routerLink="/employee" class="text-light text-decoration-none">Employee</a>
+            </h5>
+        </div>
+    </div>
+    <div class="col-10 p-3 ">
+        <div class="d-flex flex-column align-items-center justify-content-center mt-4 ">
+            <h3>Edit Employee Details</h3>
+            <div class="w-50 border shadow p-5 mt-5" >
+                <form #logForm="ngForm" (ngSubmit)="handleSubmit()">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" #empId="ngModel" required pattern="[0-9]*" maxlength="4"    id="floatingInput"  [(ngModel)]="emp.id" name="id" placeholder="employee ID">
+                        <label for="floatingEmpID">Employee ID</label>
+                      </div>
+                      <div *ngIf="empId.touched && empId.invalid" class="text-danger">
+                             *Invalid
+                      </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" #empName="ngModel" required pattern="[a-zA-Z@_]*"  minlength="3"  id="floatingEmpname" name="us" [(ngModel)]="emp.username" placeholder="Employee Name">
+                        <label for="floatingInput">Name</label>
+                      </div>
+                      <div *ngIf="empName.touched && empName.invalid" class="text-danger">
+                        *Invalid
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control"   #empEmail="ngModel" required id="floatingInput" name="em" [(ngModel)]="emp.email"  placeholder="Enter Email">
+                        <label for="floatingInput">Email</label>
+                      </div>
+                      <div *ngIf="empEmail.touched && empEmail.invalid" class="text-danger">
+                        *Invalid
+                      </div>
+                      <div class="form-floating mb-3">
+                       <select name="kk" id="floatingStatus"   #empStatus="ngModel"  required [(ngModel)]="emp.status" class="form-control ">
+                        <option disabled selected></option>
+                        <option value="active">Active</option>
+                        <option value="inactive">inactive</option>
+                    </select> 
+                    <label for="floatingStatus">Status</label>
+                      </div>
+                      <div class="text-danger" *ngIf="empStatus.touched && empStatus.invalid">*Invalid</div>
+                     <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success" [disabled]="emp.form.invalid">Update</button>
+                        <button type="button" class="btn btn-danger">Cancel</button>
+                     </div> 
+                      
+
+                </form>
+            </div>
+            
+        </div>
+        </div>
+</div>
